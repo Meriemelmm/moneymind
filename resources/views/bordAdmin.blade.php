@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MoneyMind - Objectifs d'Épargne</title>
+    <title>MoneyMind - Tableau de Bord Administrateur</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://ai-public.creatie.ai/gen_page/tailwind-custom.css" rel="stylesheet">
@@ -26,8 +26,8 @@
                 </li>
                 <li>
                     <a href="#" class="flex items-center space-x-3 py-2 px-3 rounded-md hover:bg-indigo-700">
-                        <i class="fas fa-wallet"></i>
-                        <span>Gestion des Dépenses</span>
+                        <i class="fas fa-users"></i>
+                        <span>Gestion des utilisateurs</span>
                     </a>
                 </li>
                 <li>
@@ -56,44 +56,42 @@
             <main class="py-12">
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div class="lg:text-center">
-                        <h2 class="text-base text-custom font-semibold tracking-wide uppercase">Objectifs d'Épargne</h2>
+                        <h2 class="text-base text-custom font-semibold tracking-wide uppercase">Tableau de bord Administrateur</h2>
                         <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
-                            Suivez et atteignez vos objectifs d'épargne mensuels
+                            Gestion des utilisateurs et des finances
                         </p>
                     </div>
 
-                    <div class="mt-8">
-                        <!-- Ajouter un objectif -->
-                        <div class="flex justify-end">
-                            <a href="ajouter-objectif.html" class="inline-flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                                Ajouter un objectif d'épargne
-                            </a>
+                    <div class="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <!-- Nombre d'utilisateurs -->
+                        <div class="bg-white p-6 rounded-lg shadow-lg">
+                            <h3 class="text-xl font-medium text-gray-900">Nombre d'utilisateurs</h3>
+                            <p class="mt-4 text-2xl font-bold text-gray-700">250 utilisateurs</p>
                         </div>
 
-                        <!-- Liste des objectifs -->
-                        <div class="mt-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                            <!-- Objectif d'épargne 1 -->
-                            <div class="bg-white p-6 rounded-lg shadow-lg">
-                                <h3 class="text-xl font-medium text-gray-900">Objectif Voiture</h3>
-                                <p class="mt-4 text-2xl font-bold text-gray-700">500,00 € / 1 000,00 €</p>
-                                <div class="mt-2 text-gray-600">50% atteint</div>
-                            </div>
+                        <!-- Revenu moyen des utilisateurs -->
+                        <div class="bg-white p-6 rounded-lg shadow-lg">
+                            <h3 class="text-xl font-medium text-gray-900">Revenu moyen</h3>
+                            <p class="mt-4 text-2xl font-bold text-gray-700">1 500,00 €</p>
+                        </div>
 
-                            <!-- Objectif d'épargne 2 -->
-                            <div class="bg-white p-6 rounded-lg shadow-lg">
-                                <h3 class="text-xl font-medium text-gray-900">Objectif Vacances</h3>
-                                <p class="mt-4 text-2xl font-bold text-gray-700">200,00 € / 800,00 €</p>
-                                <div class="mt-2 text-gray-600">25% atteint</div>
-                            </div>
+                        <!-- Utilisateurs inactifs -->
+                        <div class="bg-white p-6 rounded-lg shadow-lg">
+                            <h3 class="text-xl font-medium text-gray-900">Utilisateurs inactifs</h3>
+                            <p class="mt-4 text-2xl font-bold text-gray-700">20 utilisateurs</p>
                         </div>
                     </div>
 
-                    <!-- Suggestions IA -->
-                    <div class="mt-8">
-                        <h3 class="text-xl font-medium text-gray-900">Suggestions pour optimiser votre épargne</h3>
-                        <div class="mt-4 bg-white p-6 rounded-lg shadow-lg">
-                            <p class="text-gray-700">Réduisez vos achats non essentiels et réévaluez vos dépenses mensuelles pour augmenter votre épargne.</p>
+                    <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Catégories de dépenses populaires -->
+                        <div class="bg-white p-6 rounded-lg shadow-lg">
+                            <h3 class="text-xl font-medium text-gray-900">Catégories de dépenses populaires</h3>
+                            <!-- Ajouter votre graphique ici -->
+                            <div class="mt-4 h-64 bg-gray-100 rounded-md">Graphique</div>
                         </div>
+
+                        <!-- Comptes inactifs à supprimer -->
+                       
                     </div>
                 </div>
             </main>
@@ -101,7 +99,7 @@
     </div>
 
     <script>
-        // Vous pouvez intégrer ici des scripts pour charger des données dynamiques.
+        // Vous pouvez intégrer ici des scripts pour charger des graphiques, des données dynamiques, etc.
     </script>
 </body>
 </html>
