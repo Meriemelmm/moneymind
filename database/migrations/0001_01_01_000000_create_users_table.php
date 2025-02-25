@@ -19,6 +19,9 @@ return new class extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
+            $table->integer('salaire'); 
+            $table->date('dateCreditSalaire');
+            $table->enum('role', ['user', 'admin'])->default('user');
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {
