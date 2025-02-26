@@ -19,8 +19,10 @@ return new class extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
-            $table->integer('salaire'); 
-            $table->date('dateCreditSalaire');
+            $table->decimal('salaire', 10, 2)->default(0);
+            $table->integer('dateCreditSalaire')->nullable();
+
+
             $table->enum('role', ['user', 'admin'])->default('user');
         });
 

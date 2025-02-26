@@ -58,45 +58,24 @@
                     </div>
 
                     <div class="mt-10">
-                        <form method="POST"action="{{ route('store.categorie')}}" >
+                        <form method="POST"action="" >
+                             @foreach ($categories as $categorie)
 
-                        @csrf
+                     
 
                         <!-- Input to add category -->
                         <div class="flex items-center space-x-4">
-                            <input type="text" id="categoryInput" class="border border-gray-300 rounded-md p-2 w-full" name="name_categorie"  value=" @isset($categorie->categorie_name)
-                            $categorie->categorie_name @endisset  
-                            "placeholder="Ajouter une nouvelle catégorie">
-                            <button class="bg-custom text-white rounded-md px-4 py-2">Ajouter</button>
+                            <input type="text" id="categoryInput" class="border border-gray-300 rounded-md p-2 w-full" name="name_categorie" 
+                             value="{{$categorie->name_categorie}}"
+                           placeholder="Ajouter une nouvelle catégorie">
+                            <button class="bg-custom text-white rounded-md px-4 py-2">modifier</button>
+                            @endforeach
                         </form>
                     </div>
 
                         <!-- Categories Table -->
-                        <div class="mt-8 overflow-hidden shadow ring-1 ring-black ring-opacity-5 sm:rounded-lg">
-                            <table class="min-w-full divide-y divide-gray-200">
-                                <thead class="bg-gray-50">
-                                    <tr>
-                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Catégorie</th>
-                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
-                                    </tr>
-                                </thead> @foreach($categories as $categorie)
-                                <tbody class="bg-white divide-y divide-gray-200" id="categoryTableBody">
-                                   
-                                <td class="px-6 py-4 whitespace-nowrap"> {{$categorie->name_categorie}}</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                        <button class="text-indigo-600 hover:text-indigo-900"> <a href="{{ route('edit.categorie', ['editid' => $categorie->id]) }}">Modifie</a></button>
-                         <form action="{{ route('destroy.categorie', ['categorieid' => $categorie->id]) }}" method="POST">
-                         @csrf
-                         
-                         @method('DELETE')
-                             <button class="text-red-600 hover:text-red-900 ml-4">Supprimer</button>
-                         </form>
                        
-                    </td>
-                                </tbody>
-                 @endforeach
-                            </table>
-                        </div>
+                            
                     </div>
                 </div>
             </main>
