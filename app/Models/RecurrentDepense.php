@@ -1,12 +1,14 @@
 <?php
 
 namespace App\Models;
+use App\Models\Depense;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Depense extends Model
+
+class RecurrentDepense extends Depense
 {
- 
+    
     protected $fillable = [
         'name_depense',
         'montant',
@@ -14,12 +16,11 @@ class Depense extends Model
         'type',
         'user_id',
         'categorie_id',
+        'date_recurrence',
         
     ];
-    public function depensable()
+    public function depense()
     {
-        return $this->morphTo();
+        return $this->morphOne(Depense::class, 'depensable');
     }
-
-
 }

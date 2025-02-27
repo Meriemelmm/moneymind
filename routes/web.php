@@ -8,6 +8,7 @@ use App\Http\Controllers\DepenseController;
 use Illuminate\Support\Facades\Route;
 Route::get('/categorie', [CategorieController::class, 'index'])->name('categorie');
 Route::post('/categorie', [CategorieController::class, 'store'])->name('store.categorie');
+Route::post('/ajouter', [DepenseController::class,'store'])->name('store.depense');
 Route::get('/categorie', [CategorieController::class, 'showCategories'])->name('show.categorie');
 Route::delete('/categorie/{categorieid}', [CategorieController::class, 'destroy'])->name('destroy.categorie');
 Route::get('/update/{editid}', [CategorieController::class, 'edit'])->name('edit.categorie');
