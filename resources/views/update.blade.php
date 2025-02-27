@@ -56,23 +56,26 @@
                             Ajoutez, modifiez et supprimez vos catégories facilement
                         </p>
                     </div>
+ 
+                    <div class="mt-10"> 
+                           
+                        <form method="POST"action="{{ route('update.categorie', ['updateid' => $update_id]) }}" >
+                    
 
-                    <div class="mt-10">
-                        <form method="POST"action="" >
-                             @foreach ($categories as $categorie)
-
-                     
+                        @csrf
+                        @method('PUT')
 
                         <!-- Input to add category -->
                         <div class="flex items-center space-x-4">
                             <input type="text" id="categoryInput" class="border border-gray-300 rounded-md p-2 w-full" name="name_categorie" 
-                             value="{{$categorie->name_categorie}}"
+                             value="{{$name}}"
                            placeholder="Ajouter une nouvelle catégorie">
+                           <input type="hidden"  name="updateid" value="{{$update_id}}">
                             <button class="bg-custom text-white rounded-md px-4 py-2">modifier</button>
-                            @endforeach
-                        </form>
+                         
+                        </form> 
                     </div>
-
+ 
                         <!-- Categories Table -->
                        
                             

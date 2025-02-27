@@ -10,6 +10,7 @@ Route::post('/categorie', [CategorieController::class, 'store'])->name('store.ca
 Route::get('/categorie', [CategorieController::class, 'showCategories'])->name('show.categorie');
 Route::delete('/categorie/{categorieid}', [CategorieController::class, 'destroy'])->name('destroy.categorie');
 Route::get('/update/{editid}', [CategorieController::class, 'edit'])->name('edit.categorie');
+Route::put('/update/{updateid}', [CategorieController::class, 'update'])->name('update.categorie');
 Route::get('/', function () {
     return view('welcome');
 });

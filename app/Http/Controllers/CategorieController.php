@@ -54,34 +54,54 @@ class CategorieController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit( Request $request,$editid )
-    { 
-        try{
-             $categories= Categorie::find($editid);
-        if($categories){
-            return view('update',compact('categories'));}
-        else{
-            return " nays";
+    // public function edit( Request $request,$editid )
+    // { 
+    //     try{
+    //          $categories= Categorie::find($editid);
+    //     if($categories){
+    //         return view('update',compact('categories'));}
+    //     else{
+    //         return " nays";
             
-        } 
-        }
-        catch( ValidationException $e){
-            return " erreur".$e->getMessage();
-        }
+    //     } 
+    //     }
+    //     catch( ValidationException $e){
+    //         return " erreur".$e->getMessage();
+    //     }
       
         
         
+    // }
+    public function edit(Request $request, $editid)
+{ 
+    try {
+       
+        
+        $categories = Categorie::find($editid);
+        if ($categories) {
+            return view('update', ['name'=>$categories->name_categorie,'update_id'=>$categories->id]);
+        } else {
+            
+            // return redirect()->route('categories.index')->with('error', 'Catégorie non trouvée');
+             return view('update');
+        }
+    } catch (\Exception $e) {
+        
+        return "erreur";
     }
+}
+
 
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request,  $updateid)
     {
-    $categorie= Categorie::find('id',$updateid);
+       
+    $categorie= Categorie::find($updateid);
     if($categorie){
         $categorie->update(['name_categorie'=>$request->name_categorie]);
-
+        return redirect()->route('show.categorie');
 
     }
         
