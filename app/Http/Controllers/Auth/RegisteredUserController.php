@@ -67,7 +67,7 @@ class RegisteredUserController extends Controller
    
        $user = User::find(Auth::id());
        if($user->role){
-        return  view('bordUser');
+        return  view('ajouter');
 
        }
        else{
