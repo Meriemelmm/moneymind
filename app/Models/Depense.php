@@ -14,6 +14,8 @@ class Depense extends Model
         'type',
         'user_id',
         'categorie_id',
+        'date_recurrence',
+        'date_depense',
         
     ];
     public function depensable()

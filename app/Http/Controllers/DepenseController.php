@@ -8,6 +8,11 @@ use App\Models\Categorie;
 use App\Models\RecurrentDepense;
 use Illuminate\Http\Request;
 use Illuminate\Auth\Events\Validated;
+use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Schedule;
+use Illuminate\Support\Facades\Log;
+
+
 
 class DepenseController extends Controller
 {
@@ -31,40 +36,54 @@ class DepenseController extends Controller
 //     public function store(Request $request)
 //     {
 
-      
+       
  
 //         $validated = $request->validate([
 //             'name_depense' => ['required', 'string', 'max:225'],
 //             'montant' => ['required', 'numeric'],
 //             'type' => ['required', 'in:non recurrent,recurrent'],
             
-//           'date_recurrence' => ['required', 'integer', 'min:1', 'max:31'], 
-//             'date_depense' => [ 'date'],
+//           'date_recurrence' => [Rule::requiredIf($request->type === 'recurrent'), 'integer', 'min:1', 'max:31'], 
+//             'date_depense' => [Rule::requiredIf($request->type === 'non recurrent'),'date'],
             
 //         ]);  
+       
         
 //        if($request->type==="recurrent"){
       
-//         $depense = Depense::create([
-//             'name_depense' => $validated['name_depense'],
-//             'montant' => $validated['montant'],
-//             'type' => $validated['type'],
-//             'date_recurrence' => $validated['date_recurrence'],
-//             'user_id' => Auth::id(),
-//             'categorie_id' => $request->categorie_id
-//         ]);
-       
-//    if($depense){
-//     return "true";
-//    }
-//    else{
-//     return " non true";
-//    }
+//         // $depense = Depense::create([
+//         //     'name_depense' => $validated['name_depense'],
+//         //     'montant' => $validated['montant'],
+//         //     'type' => $validated['type'],
+//         //     'date_recurrence' => $validated['date_recurrence'],
+//         //     'user_id' => Auth::id(),
+//         //     'categorie_id' => $request->categorie_id
+//         // ]);
+//         Schedule::call(function () use($request,$validated) {
+//             $depense = Depense::create([
+//                 'name_depense' => $validated['name_depense'],
+//                 'montant' => $validated['montant'],
+//                 'type' => $validated['type'],
+//                 'date_recurrence' => $validated['date_recurrence'],
+//                 'user_id' => Auth::id(),
+//                 'categorie_id' => $request->categorie_id
+//             ]);
+            
+//             if ($depense) {
+//               return " true";
+//             } else {
+//                 return " non true";
+//         }
+//     })->everyMinute();
+// }
 
-//        }
-//        else{
+
        
-//         $depense=RecurrentDepense::create(['name_depense'=>$validated['name_depense'],
+//        else{
+      
+        
+       
+//         $depense=Depense::create(['name_depense'=>$validated['name_depense'],
 //         'montant'=>$validated['montant'],
 //         'type'=>$validated['type'],
 //         'date_depense'=>$validated['date_depense'],
@@ -81,52 +100,65 @@ class DepenseController extends Controller
 //            }}
         
 //     }
+public function store(Request $request)
+{
+    // Validation des données
+    $validated = $request->validate([
+        'name_depense' => ['required', 'string', 'max:225'],
+        'montant' => ['required', 'numeric'],
+        'type' => ['required', 'in:non recurrent,recurrent'],
+        'date_recurrence' => [Rule::requiredIf($request->type === 'recurrent'), 'integer', 'min:1', 'max:31'],
+        'date_depense' => [Rule::requiredIf($request->type === 'non recurrent'), 'date'],
+    ]);
 
-    /**
-     * Display the specified resource.
-     */
-    public function store(Request $request)
-     {
-        // Validation des données
-        $validated = $request->validate([
-            'name_depense' => ['required', 'string', 'max:225'],
-            'montant' => ['required', 'numeric'],
-            'type' => ['required', 'in:non recurrent,recurrent'],
-            'date_recurrence' => ['required_if:type,recurrent', 'integer', 'min:1', 'max:31'], // Validation de la date_recurrence pour les récurrences
-            'date_depense' => ['nullable', 'date'], // Date de dépense si ce n'est pas récurrent
-        ]);
-
-        // Si c'est une dépense récurrente
-        if ($request->type === 'recurrent') {
-            // On crée une RecurrentDepense
-            $depense = RecurrentDepense::create([
+  
+    if ($request->type === "recurrent") {
+        
+        $depense = Depense::create([
                 'name_depense' => $validated['name_depense'],
                 'montant' => $validated['montant'],
                 'type' => $validated['type'],
                 'date_recurrence' => $validated['date_recurrence'],
                 'user_id' => Auth::id(),
-                'categorie_id' => $request->categorie_id,
+                'categorie_id' => $request->categorie_id
             ]);
-        } else {
-            // Sinon, on crée une Depense classique
-            $depense = Depense::create([
-                'name_depense' => $validated['name_depense'],
-                'montant' => $validated['montant'],
-                'type' => $validated['type'],
-                'date_depense' => $validated['date_depense'],
-                'user_id' => Auth::id(),
-                'categorie_id' => $request->categorie_id,
-            ]);
-        }
-
-        // Vérification de l'insertion
+            
+       
+        // Schedule::call(function () use ($request, $validated) {
+          
+        
         if ($depense) {
-            return "true";
+            return "Dépense créée avec succès.";
         } else {
-            return "non true";
+            return "Échec de la création de la dépense.";
+        }    
+           
+           
+        // })->everyMinute();  
+
+
+    } else {
+       
+        $depense = Depense::create([
+            'name_depense' => $validated['name_depense'],
+            'montant' => $validated['montant'],
+            'type' => $validated['type'],
+            'date_depense' => $validated['date_depense'],
+            'user_id' => Auth::id(),
+            'categorie_id' => $request->categorie_id
+        ]);
+
+        if ($depense) {
+            return "Dépense créée avec succès.";
+        } else {
+            return "Échec de la création de la dépense.";
         }
-     }
-   
+    }
+}
+
+
+    
+    
 
     
     public function show(string $id)
@@ -134,9 +166,8 @@ class DepenseController extends Controller
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+    
+
     public function edit(string $id)
     {
         //

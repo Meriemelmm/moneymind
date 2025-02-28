@@ -22,9 +22,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained('users');
             $table->foreignId('categorie_id')->constrained('categories');
             
-            // Créer les colonnes polymorphiques
-            $table->unsignedBigInteger('depensable_id')->nullable(); // rend depensable_id nullable
-            $table->string('depensable_type')->nullable(); // rend depensable_type nullable
+            
         });
     }
     
