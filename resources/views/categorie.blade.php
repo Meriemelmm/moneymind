@@ -12,28 +12,28 @@
 </head>
 <body class="bg-gray-50">
     <div class="flex">
-        <!-- Sidebar -->
-        <div class="w-64 bg-custom text-white min-h-screen p-6">
+    <div class="w-64 bg-custom text-white min-h-screen p-6">
             <div class="flex items-center justify-center mb-6">
                 <img class="h-8 w-auto" src="https://ai-public.creatie.ai/gen_page/logo_placeholder.png" alt="MoneyMind">
             </div>
             <ul>
-                <li>
-                    <a href="#" class="flex items-center space-x-3 py-5 px-3 rounded-md hover:bg-indigo-700">
+            <li>
+                    <a href="{{route('bordAdmin')}}" class="flex items-center space-x-3 py-2 px-3 rounded-md hover:bg-indigo-700">
+                        <i class="fas fa-users"></i>
+                        <span>tableau du bord </span>
+                    </a>
+                </li>
+            <li>
+                    <a href="{{route('users.index')}}" class="flex items-center space-x-3 py-2 px-3 rounded-md hover:bg-indigo-700">
                         <i class="fas fa-users"></i>
                         <span>Gestion des utilisateurs</span>
                     </a>
                 </li>
+             
                 <li>
-                    <a href="#" class="flex items-center space-x-3 py-5 px-3 rounded-md hover:bg-indigo-700">
+                    <a href="{{route('show.categorie')}}" class="flex items-center space-x-3 py-2 px-3 rounded-md hover:bg-indigo-700">
                         <i class="fas fa-wallet"></i>
-                        <span>Gestion des dépenses</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="flex items-center space-x-3 py- px-3 rounded-md hover:bg-indigo-700">
-                        <i class="fas fa-cogs"></i>
-                        <span>Paramètres</span>
+                        <span>Gestion des categories</span>
                     </a>
                 </li>
                 <li>
@@ -44,7 +44,6 @@
                 </li>
             </ul>
         </div>
-
         <!-- Main content -->
         <div class="flex-1 bg-gray-50">
           

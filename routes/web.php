@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\DepenseController;
+use App\Http\Controllers\AdminController;
 
 
 use Illuminate\Support\Facades\Route;
@@ -13,13 +14,21 @@ Route::get('/categorie', [CategorieController::class, 'showCategories'])->name('
 Route::delete('/categorie/{categorieid}', [CategorieController::class, 'destroy'])->name('destroy.categorie');
 Route::get('/update/{editid}', [CategorieController::class, 'edit'])->name('edit.categorie');
 Route::put('/update/{updateid}', [CategorieController::class, 'update'])->name('update.categorie');
+Route::get('/users', [AdminController::class, 'index'])->name('users.index');
+Route::delete('/users/{userid}', [AdminController::class, 'destroy'])->name('users.destroy');
 
 
-Route::get('/ajouter', [DepenseController::class, 'index']);
+Route::get('/ajouter', [DepenseController::class, 'index'])->name('ajouter.index');
 
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/bordUser', function () {
+    return view('bordUser');
+})->name('bordUser');
+Route::get('/bordAdmin', function () {
+    return view('bordAdmin');
+})->name('bordAdmin');
 Route::get('/update', function () {
     return view('update');
 });

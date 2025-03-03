@@ -21,9 +21,11 @@ return new class extends Migration
             $table->timestamps();
             $table->decimal('salaire', 10, 2)->default(0);
             $table->integer('dateCreditSalaire')->nullable();
+            $table->integer('nombre_credit_salaire')->default(0);
 
 
             $table->enum('role', ['user', 'admin'])->default('user');
+            $table->timestamp('last_activated_at')->nullable(); 
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {

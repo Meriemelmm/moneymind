@@ -18,16 +18,23 @@
                 <img class="h-8 w-auto" src="https://ai-public.creatie.ai/gen_page/logo_placeholder.png" alt="MoneyMind">
             </div>
             <ul>
-                <li>
-                    <a href="#" class="flex items-center space-x-3 py-2 px-3 rounded-md hover:bg-indigo-700">
+            <li>
+                    <a href="{{route('bordAdmin')}}" class="flex items-center space-x-3 py-2 px-3 rounded-md hover:bg-indigo-700">
+                        <i class="fas fa-users"></i>
+                        <span>tableau du bord </span>
+                    </a>
+                </li>
+            <li>
+                    <a href="{{route('users.index')}}" class="flex items-center space-x-3 py-2 px-3 rounded-md hover:bg-indigo-700">
                         <i class="fas fa-users"></i>
                         <span>Gestion des utilisateurs</span>
                     </a>
                 </li>
+             
                 <li>
-                    <a href="#" class="flex items-center space-x-3 py-2 px-3 rounded-md hover:bg-indigo-700">
+                    <a href="{{route('show.categorie')}}" class="flex items-center space-x-3 py-2 px-3 rounded-md hover:bg-indigo-700">
                         <i class="fas fa-wallet"></i>
-                        <span>Gestion des dépenses</span>
+                        <span>Gestion des categories</span>
                     </a>
                 </li>
                 <li>
@@ -41,7 +48,7 @@
 
         <!-- Main content -->
         <div class="flex-1 bg-gray-50">
-            <nav class="bg-white shadow-sm">
+            <!-- <nav class="bg-white shadow-sm">
                 <div class="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div class="flex justify-between h-16">
                         <div class="flex">
@@ -51,7 +58,7 @@
                         </div>
                     </div>
                 </div>
-            </nav>
+            </nav> -->
 
             <main class="py-12">
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -74,22 +81,29 @@
                                 </thead>
                                 <tbody class="bg-white divide-y divide-gray-200" id="userTableBody">
                                     <!-- Liste des utilisateurs -->
-                                    <tr>
-                                        <td class="px-6 py-4 whitespace-nowrap">John Doe</td>
-                                        <td class="px-6 py-4 whitespace-nowrap">johndoe@example.com</td>
+                                    @foreach( $users as $user ) <tr>
+                                       
+                                        <td class="px-6 py-4 whitespace-nowrap"> {{$user->name}}</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">{{$user->email}}</td>
                                         <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                            <button class="text-indigo-600 hover:text-indigo-900" onclick="editUser(1)">Modifier</button>
-                                            <button class="text-red-600 hover:text-red-900 ml-4" onclick="deleteUser(1)">Supprimer</button>
+                                            <form action="{{route('users.destroy', ['userid' => $user->id])}}" method="POST">
+                                            @csrf
+                                             @method('DELETE')   
+                                      
+                                                <input type="hidden" value="{{$user->id}}">
+                                           
+                                            <button class="text-red-600 hover:text-red-900 ml-4" onclick="deleteUser(1)">Supprimer</button></form>
                                         </td>
-                                    </tr>
-                                    <tr>
+                                     
+                                    </tr>   @endforeach
+                                    <!-- <tr>
                                         <td class="px-6 py-4 whitespace-nowrap">Jane Smith</td>
                                         <td class="px-6 py-4 whitespace-nowrap">janesmith@example.com</td>
                                         <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                             <button class="text-indigo-600 hover:text-indigo-900" onclick="editUser(2)">Modifier</button>
                                             <button class="text-red-600 hover:text-red-900 ml-4" onclick="deleteUser(2)">Supprimer</button>
                                         </td>
-                                    </tr>
+                                    </tr> -->
                                     <!-- Vous pouvez ajouter plus d'utilisateurs ici -->
                                 </tbody>
                             </table>

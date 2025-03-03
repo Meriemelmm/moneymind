@@ -18,16 +18,29 @@
                 <img class="h-8 w-auto" src="https://ai-public.creatie.ai/gen_page/logo_placeholder.png" alt="MoneyMind">
             </div>
             <ul>
+            <li>
+                    <a href="{{route('bordUser')}}" class="flex items-center space-x-3 py-2 px-3 rounded-md hover:bg-indigo-700">
+                    <i class="fas fa-chart-line"></i>
+
+                        <span> tableau du bord </span>
+                    </a>
+                </li>
                 <li>
-                    <a href="#" class="flex items-center space-x-3 py-2 px-3 rounded-md hover:bg-indigo-700">
-                        <i class="fas fa-chart-line"></i>
-                        <span>Tableau de bord</span>
+                    <a href="{{route('ajouter.index')}}" class="flex items-center space-x-3 py-2 px-3 rounded-md hover:bg-indigo-700">
+                    <i class="fas fa-plus"></i>
+                        <span>ajouter depense</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="" class="flex items-center space-x-3 py-2 px-3 rounded-md hover:bg-indigo-700">
+                    <i class="fas fa-wallet"></i>
+                        <span>Depenses Recurrentes</span>
                     </a>
                 </li>
                 <li>
                     <a href="#" class="flex items-center space-x-3 py-2 px-3 rounded-md hover:bg-indigo-700">
-                        <i class="fas fa-wallet"></i>
-                        <span>Gestion des Dépenses</span>
+                    <i class="fas fa-wallet"></i>
+                        <span>Depenses Uniques </span>
                     </a>
                 </li>
                 <li>
