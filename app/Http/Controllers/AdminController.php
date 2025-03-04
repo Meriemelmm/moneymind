@@ -30,6 +30,17 @@ class AdminController extends Controller
         //
     }
 
+    // public function ajouteBudget()
+    // {
+    //     $users = User::all();
+    //     foreach ($users as $user) {
+    //         // Vérifier si le jour de la dateCreditSalaire est égal à 12
+    //         if ($user->dateCreditSalaire == 12) {
+    //             $user->budget += $user->salaire;
+    //             $user->save();
+    //         }
+    //     }
+    // }
     /**
      * Store a newly created resource in storage.
      */

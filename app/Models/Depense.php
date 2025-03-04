@@ -18,10 +18,14 @@ class Depense extends Model
         'date_depense',
         
     ];
-    public function depensable()
-    {
-        return $this->morphTo();
-    }
+   
+    public function user()
+{
+    return $this->belongsTo(User::class); 
+}
+public function categorie(){
+    return $this->belongsTo(Categorie::class);
+}
 
 
 }

@@ -2,8 +2,11 @@
 
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
+use App\Models\Depense;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Schedule;
+use Illuminate\Support\Facades\Log;
+use Carbon\Carbon;
 
 // Schedule::call(function () {
 //     // Récupérer toutes les dépenses récurrentes
@@ -43,8 +46,76 @@ use Illuminate\Support\Facades\Schedule;
 
       
 //         $user->save();
+//  function index()
+// {
+// $users=User::where('dateCreditSalaire','<',Carbon::now()->day(dateCreditSalaire))
+// ->where('role', '=', 'user')
+// ->get();
 
 
+//     return view('gestion_user',['users'=>$users]);
+
+// }
+// public function (){
+//    $user =User::find(Auth::id());
+// if($user->dateCreditSalaire=Carbon::now->day){
+//     $user->budjet+=$user->salaire;
+//     $user->save();
+// }
+// }
+Schedule::call(function () {
+    $users = User::all(); // Récupérer tous les utilisateurs
+
+    foreach ($users as $user) {
+        // Vérifier si la date de crédit du salaire correspond à aujourd'hui
+        if ($user->dateCreditSalaire == Carbon::now()->day) {
+            // Ajouter le salaire au budget
+            $user->budget += $user->salaire;
+            $user->save();
+        }
+    }
+})->cron('27 16 * * *');
+/*
+selecter tout les users
+parcourir les users b foreach
+si la date de credit est===aujourdhui 
+appeler fonction changer les budget
+utiliser cron
+ 
+*/
+
+
+
+
+Schedule::call(function () {
+   
+    $depenses = Depense::all();
+    foreach($depenses as $depense){
+
+        if ($depense->type === "recurrent") {
+            if($depense->date_recurrence=== Carbon::now()->day){
+
+
+                $depense->user->budget-=$depense->montant;
+                $depense->user->save();
+            }
+
+            
+        } else {
+            // $this->info("La dépense {$depense->name_depense} n'est pas récurrente .");
+            if($depense->date_depense ===Carbon::now()->toDateString() ){
+
+
+                $depense->user->budget=$depense->user->budget-$depense->montant;
+                $depense->user->save();
+            }
+        } 
+
+     
+}
+
+    }
+)->cron('30 10 * * *');
 
 
 

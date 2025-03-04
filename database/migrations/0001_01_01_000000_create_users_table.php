@@ -26,6 +26,7 @@ return new class extends Migration
 
             $table->enum('role', ['user', 'admin'])->default('user');
             $table->timestamp('last_activated_at')->nullable(); 
+            $table->decimal('budget', 10, 2)->default(0); 
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {

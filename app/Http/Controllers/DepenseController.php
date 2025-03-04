@@ -157,14 +157,24 @@ public function store(Request $request)
 }
 
 
-    
+     
     
 
+public function specifique()
+{
     
-    public function show(string $id)
-    {
-        //
+    $depenses = Depense::with('user','categorie')->where('user_id', Auth::id())->get();
+
+   
+    if ($depenses->isEmpty()) {
+        return "false - Aucune dépense trouvée.";
+    } else {
+     
+        return view('gestionDepense',['depenses'=>$depenses]);
     }
+}
+
+
 
     
 
