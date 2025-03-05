@@ -32,15 +32,9 @@
                     </a>
                 </li>
                 <li>
-                    <a href="" class="flex items-center space-x-3 py-2 px-3 rounded-md hover:bg-indigo-700">
+                    <a href="{{route('depenses')}}" class="flex items-center space-x-3 py-2 px-3 rounded-md hover:bg-indigo-700">
                     <i class="fas fa-wallet"></i>
-                        <span>Depenses Recurrentes</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="flex items-center space-x-3 py-2 px-3 rounded-md hover:bg-indigo-700">
-                    <i class="fas fa-wallet"></i>
-                        <span>Depenses Uniques </span>
+                        <span>Gestion depenses </span>
                     </a>
                 </li>
                 <li>
@@ -81,7 +75,7 @@
                         <div class="mb-6">
                             
                                 <button type="submit" class="mt-4 inline-flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                                    Ajouter la dépense
+                                    <a href="{{route('ajouter.index')}}">Ajouter la dépense</a>
                                 </button>
                            
                         </div>
@@ -94,7 +88,7 @@
                                     <tr>
                                         <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nom</th>
                                         <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Montant</th>
-                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">username</th>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">type</th>
 
                                         <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Catégorie</th>
                                         <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
@@ -105,11 +99,17 @@
                                     <tr>
                                         <td class="px-6 py-4 whitespace-nowrap">{{$depense->name_depense}}</td>
                                         <td class="px-6 py-4 whitespace-nowrap">{{$depense->montant}}€</td>
-                                        <td class="px-6 py-4 whitespace-nowrap">{{$depense->user->name}}</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">{{$depense->type}}</td>
                                         <td class="px-6 py-4 whitespace-nowrap">{{$depense->categorie->name_categorie}}</td>
                                         <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                            <button class="text-indigo-600 hover:text-indigo-900" onclick="editExpense(1)">Modifier</button>
-                                            <button class="text-red-600 hover:text-red-900 ml-4" onclick="deleteExpense(1)">Supprimer</button>
+                                            <button class="text-indigo-600 hover:text-indigo-900" onclick="editExpense(1)">
+                                                <a href="{{ route('edit.depense', ['depenseid' => $depense->id]) }}">Modifier</a></button>
+                                           
+                                            <form action="{{ route('depense.destroy', ['removedid' => $depense->id]) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                               <button class="text-red-600 hover:text-red-900 ml-4">Supprimer</button> 
+                                            </form> 
                                         </td>
                                     </tr>  @endforeach
                                     <!-- <tr>

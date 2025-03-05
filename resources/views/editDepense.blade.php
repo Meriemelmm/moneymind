@@ -52,33 +52,38 @@
             <div class="max-w-md w-full space-y-8 bg-white p-10 rounded-lg shadow-lg">
                 <div class="text-center">
                     <img class="mx-auto h-16 w-auto" src="https://ai-public.creatie.ai/gen_page/logo_placeholder.png" alt="Logo"/>
-                    <h2 class="mt-6 text-3xl font-[&#39;Playfair_Display&#39;] font-bold text-gray-900">Ajouter une Dépense</h2>
-                    <p class="mt-2 text-sm text-gray-600">Enregistrez vos dépenses simplement</p>
+                    <h2 class="mt-6 text-3xl font-[&#39;Playfair_Display&#39;] font-bold text-gray-900">modifier une Dépense</h2>
+                    <p class="mt-2 text-sm text-gray-600">update vos dépenses  d'un façon simple</p>
                 </div>
 
                 <form id="expenseForm" class="mt-8 space-y-6" method="POST" action="{{ route('store.depense') }}">
                     @csrf
+                @method('PUT')
                     <div class="space-y-4">
-                        <div class="mb-4">
-                            <p class="text-sm font-medium text-gray-700 mb-2">Type de dépense</p>
-                            <div class="flex items-center space-x-4">
-                                <label class="flex items-center space-x-2">
-                                    <input type="radio" id="uniqueExpense" name="type" class="h-4 w-4 text-custom border-gray-300 rounded focus:ring-custom" value="non recurrent">
-                                    <span class="text-sm text-gray-700">Dépense unique</span>
-                                </label>
-                                <label class="flex items-center space-x-2">
-                                    <input type="radio" value="recurrent" id="recurringExpense" name="type" class="h-4 w-4 text-custom border-gray-300 rounded focus:ring-custom">
-                                    <span class="text-sm text-gray-700">Dépense récurrente</span>
-                                </label>
-                            </div>
-                        </div>
+                    <div class="mb-4">
+    <p class="text-sm font-medium text-gray-700 mb-2">Type de dépense</p>
+    <div class="flex items-center space-x-4">
+        <label class="flex items-center space-x-2">
+            <input type="radio" id="uniqueExpense" name="type" class="h-4 w-4 text-custom border-gray-300 rounded focus:ring-custom" value="non recurrent"
+                @if(old('type', $depenses->type) == 'non recurrent') checked @endif>
+            <span class="text-sm text-gray-700">Dépense unique</span>
+        </label>
+        <label class="flex items-center space-x-2">
+            <input type="radio" value="recurrent" id="recurringExpense" name="type" class="h-4 w-4 text-custom border-gray-300 rounded focus:ring-custom"
+                @if(old('type', $depenses->type) == 'recurrent') checked @endif>
+            <span class="text-sm text-gray-700">Dépense récurrente</span>
+        </label>
+    </div>
+</div>
+
 
                         <div class="mb-4">
                             <label class="block text-sm font-medium text-gray-700">Titre (obligatoire)</label>
                             <div class="mt-1">
-                                <input name="name_depense" class="appearance-none !rounded-button block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-custom focus:border-custom" rows="3" placeholder="Ajoutez une depense...">
+                                <input name="name_depense" value="{{$depenses->name_depense}}" class="appearance-none !rounded-button block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-custom focus:border-custom" rows="3" placeholder="Ajoutez une depense...">
                             </div>
                         </div>
+                        
 
                         <div class="mb-4">
                             <label class="block text-sm font-medium text-gray-700">Montant</label>
@@ -86,7 +91,7 @@
                                 <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-400">
                                     <i class="fas fa-euro-sign"></i>
                                 </span>
-                                <input name="montant" type="number" step="1" required class="appearance-none !rounded-button relative block w-full pl-10 pr-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-custom focus:border-custom" placeholder="0.00">
+                                <input name="montant" type="number"  value="{{$depenses->montant}}"step="1" required class="appearance-none !rounded-button relative block w-full pl-10 pr-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-custom focus:border-custom" placeholder="0.00">
                             </div>
                         </div>
 
@@ -97,7 +102,9 @@
                                     <option value="">Sélectionnez une catégorie</option>
                                     @if(isset($categories) && $categories->count() > 0)
                                         @foreach($categories as $categorie)
-                                            <option value="{{ $categorie->id }}" name="categorie_id">{{ $categorie->name_categorie }}</option>
+                                            <option  value="{{ $categorie->id }}" name="categorie_id" 
+                                            @if(old('categorie_id', $depenses->categorie_id) == $categorie->id) selected @endif
+                                            >{{ $categorie->name_categorie }}</option>
                                         @endforeach
                                     @endif
                                 </select>
@@ -108,7 +115,7 @@
                     </div>
 
                     <button type="submit" class="!rounded-button group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium text-white bg-custom hover:bg-custom/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-custom">
-                        Enregistrer la dépense
+                        modifier  la dépense
                     </button>
                 </form>
             </div>
@@ -116,36 +123,42 @@
     </div>
 
 
+   
     <script>
-       let radios = document.querySelectorAll('input[name="type"]');
+  let radios = document.querySelectorAll('input[name="type"]');
   let container = document.getElementById("extraInputContainer");
 
+  function updateExtraInput() {
+    let selectedValue = document.querySelector('input[name="type"]:checked').value;
+    if (selectedValue === "recurrent") {
+      container.innerHTML = `  
+          <label class="block text-sm font-medium text-gray-700">Date récurrence</label>
+          <div class="mt-1 relative">
+              <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-400">
+                  <i class="fas fa-calendar"></i>
+              </span>
+              <input type="number" name="date_recurrence" value="{{$depenses->date_recurrence}}"  required class="appearance-none !rounded-button relative block w-full pl-10 pr-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-custom focus:border-custom">
+          </div>`;
+    } else {
+      container.innerHTML = `  
+          <label class="block text-sm font-medium text-gray-700">Date dépense</label>
+          <div class="mt-1 relative">
+              <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-400">
+                  <i class="fas fa-calendar"></i>
+              </span>
+              <input type="date" name="date_depense"value="{{$depenses->date_depense}}" required class="appearance-none !rounded-button relative block w-full pl-10 pr-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-custom focus:border-custom">
+          </div>`;
+    }
+  }
+
+
   radios.forEach((radio) => {
-    radio.addEventListener("change", function () {
-      if (this.value === "recurrent") {
-        container.innerHTML = `  <label class="block text-sm font-medium text-gray-700">Date recurence</label>
-            <div class="mt-1 relative">
-                <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-400">
-                    <i class="fas fa-calendar"></i>
-                </span>
-                <input type="number" name="date_recurrence" required class="appearance-none !rounded-button relative block w-full pl-10 pr-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-custom focus:border-custom">
-            </div> 
-
-
- 
-`;
-      } else {
-        container.innerHTML = `  <label class="block text-sm font-medium text-gray-700">Date depense</label>
-            <div class="mt-1 relative">
-                <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-400">
-                    <i class="fas fa-calendar"></i>
-                </span>
-                <input type="date" name="date_depense" required class="appearance-none !rounded-button relative block w-full pl-10 pr-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-custom focus:border-custom">
-            </div>`;
-      }
-    });
+    radio.addEventListener("change", updateExtraInput);
   });
 
-    </script>
+
+  window.addEventListener("DOMContentLoaded", updateExtraInput);
+</script>
+
 </body>
 </html>

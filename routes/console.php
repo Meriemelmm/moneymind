@@ -71,10 +71,11 @@ Schedule::call(function () {
         if ($user->dateCreditSalaire == Carbon::now()->day) {
             // Ajouter le salaire au budget
             $user->budget += $user->salaire;
+            $user->nombre_credit_salaire += 1;
             $user->save();
         }
     }
-})->cron('27 16 * * *');
+})->cron('48 11 * * *');
 /*
 selecter tout les users
 parcourir les users b foreach
@@ -115,7 +116,7 @@ Schedule::call(function () {
 }
 
     }
-)->cron('30 10 * * *');
+)->cron('30 12 * * *');
 
 
 

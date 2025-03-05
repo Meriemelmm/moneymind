@@ -149,7 +149,7 @@ public function store(Request $request)
         ]);
 
         if ($depense) {
-            return "Dépense créée avec succès.";
+            return  redirect()->route('depenses');
         } else {
             return "Échec de la création de la dépense.";
         }
@@ -167,7 +167,8 @@ public function specifique()
 
    
     if ($depenses->isEmpty()) {
-        return "false - Aucune dépense trouvée.";
+       
+        return view('gestionDepense',['depenses'=>$depenses]);
     } else {
      
         return view('gestionDepense',['depenses'=>$depenses]);
@@ -178,9 +179,12 @@ public function specifique()
 
     
 
-    public function edit(string $id)
+    public function edit($depenseid)
     {
-        //
+        $categories=Categorie::all();
+        
+        $depense=Depense::find($depenseid);
+        return view('editDepense',['depenses'=> $depense,'categories'=>$categories]);
     }
 
     /**
@@ -194,8 +198,17 @@ public function specifique()
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($removedid)
     {
-        //
+        $depense= Depense::find($removedid);
+        if($depense){
+              $depense->delete();
+        return   redirect()->route('depenses');
+        }
+        else{
+            return " nexiste pas";
+        }
+      
+        
     }
 }

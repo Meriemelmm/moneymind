@@ -32,15 +32,9 @@
                     </a>
                 </li>
                 <li>
-                    <a href="" class="flex items-center space-x-3 py-2 px-3 rounded-md hover:bg-indigo-700">
+                    <a href="{{route('depenses')}}" class="flex items-center space-x-3 py-2 px-3 rounded-md hover:bg-indigo-700">
                     <i class="fas fa-wallet"></i>
-                        <span>Depenses Recurrentes</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="flex items-center space-x-3 py-2 px-3 rounded-md hover:bg-indigo-700">
-                    <i class="fas fa-wallet"></i>
-                        <span>Depenses Uniques </span>
+                        <span>Gestion depenses </span>
                     </a>
                 </li>
                 <li>

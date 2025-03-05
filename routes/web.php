@@ -17,7 +17,10 @@ Route::put('/update/{updateid}', [CategorieController::class, 'update'])->name('
 Route::get('/users', [AdminController::class, 'index'])->name('users.index');
 Route::delete('/users/{userid}', [AdminController::class, 'destroy'])->name('users.destroy');
 // Route::get('/execute-ajoute-budget', [AdminController::class, 'ajouteBudget']);
-Route::get('/depenses', [DepenseController::class,'specifique']);
+Route::get('/depenses', [DepenseController::class,'specifique'])->name('depenses');
+Route::delete('/depenses/{removedid}', [DepenseController::class,'destroy'])->name('depense.destroy');
+
+Route::get('/edit/{depenseid}', [DepenseController::class,'edit'])->name('edit.depense');
 
 
 
