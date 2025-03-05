@@ -22,7 +22,7 @@ Route::delete('/depenses/{removedid}', [DepenseController::class,'destroy'])->na
 
 Route::get('/edit/{depenseid}', [DepenseController::class,'edit'])->name('edit.depense');
 
-
+Route::put('/edit/{depenseid}', [DepenseController::class,'update'])->name('update.depense');
 
 Route::get('/ajouter', [DepenseController::class, 'index'])->name('ajouter.index');
 

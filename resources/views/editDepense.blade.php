@@ -56,7 +56,7 @@
                     <p class="mt-2 text-sm text-gray-600">update vos dépenses  d'un façon simple</p>
                 </div>
 
-                <form id="expenseForm" class="mt-8 space-y-6" method="POST" action="{{ route('store.depense') }}">
+                <form id="expenseForm" class="mt-8 space-y-6" method="POST" action="{{route('update.depense', ['depenseid' => $depenses->id]) }}">
                     @csrf
                 @method('PUT')
                     <div class="space-y-4">
