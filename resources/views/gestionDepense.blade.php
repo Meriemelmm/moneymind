@@ -98,7 +98,7 @@
                                    @foreach($depenses as $depense) <!-- Liste des dépenses -->
                                     <tr>
                                         <td class="px-6 py-4 whitespace-nowrap">{{$depense->name_depense}}</td>
-                                        <td class="px-6 py-4 whitespace-nowrap">{{$depense->montant}}€</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">{{$depense->montant}}DH</td>
                                         <td class="px-6 py-4 whitespace-nowrap">{{$depense->type}}</td>
                                         <td class="px-6 py-4 whitespace-nowrap">{{$depense->categorie->name_categorie}}</td>
                                         <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">

@@ -73,13 +73,13 @@
                         <!-- Revenu restant -->
                         <div class="bg-white p-6 rounded-lg shadow-lg">
                             <h3 class="text-xl font-medium text-gray-900">Revenu restant</h3>
-                            <p class="mt-4 text-2xl font-bold text-gray-700">1 200,00 €</p>
+                            <p class="mt-4 text-2xl font-bold text-gray-700">{{$user->budget}} DH</p>
                         </div>
 
                         <!-- Dépenses totales -->
                         <div class="bg-white p-6 rounded-lg shadow-lg">
                             <h3 class="text-xl font-medium text-gray-900">Total Dépensé</h3>
-                            <p class="mt-4 text-2xl font-bold text-gray-700">850,00 €</p>
+                            <p class="mt-4 text-2xl font-bold text-gray-700">{{$total}} DH</p>
                         </div>
 
                         <!-- Objectifs d'épargne -->

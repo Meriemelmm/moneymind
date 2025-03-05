@@ -49,7 +49,7 @@
                     </main>
                 </div>
             </div>            <div class="lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2">
-                <img class="h-56 w-full object-cover sm:h-72 md:h-96 lg:w-full lg:h-full" src="https://creatie.ai/ai/api/search-image?query=A%203D%20vector-style%20image%20with%20a%20clean,%20solid%20background%20color%20that%20contrasts%20significantly%20with%20the%20main%20theme.%20The%20content%20includes%20financial%20management%20concept%20with%20floating%20coins,%20charts,%20and%20a%20smartphone%20showing%20budget%20tracking%20app%20interface&width=800&height=600&orientation=landscape&removebg=true&flag=339f458a-afe1-41b9-b714-acb576d81a46" alt="MoneyMind App">            </div>
+                <img class="h-56 w-full object-cover sm:h-72 md:h-96 lg:w-full lg:h-full" src="{{asset('images/home.jpg')}}" alt="MoneyMind App">            </div>
         </div>
 
         <div class="bg-gray-50 py-12">

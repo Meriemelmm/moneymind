@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\DepenseController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\UserController;
 
 
 use Illuminate\Support\Facades\Route;
@@ -29,18 +30,16 @@ Route::get('/ajouter', [DepenseController::class, 'index'])->name('ajouter.index
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/bordUser', function () {
-    return view('bordUser');
-})->name('bordUser');
 Route::get('/bordAdmin', function () {
     return view('bordAdmin');
 })->name('bordAdmin');
 Route::get('/update', function () {
     return view('update');
 });
-// Route::get('/ajoute', function () {
-//     return view('ajouter');
-// });
+Route::get('/obje', function () {
+    return view('goalsFormul');
+});
+Route::get('/bordUser', [UserController::class, 'static'])->name('bordUser');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
