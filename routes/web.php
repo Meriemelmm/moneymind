@@ -5,9 +5,18 @@ use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\DepenseController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\WishlistController;
 
 
 use Illuminate\Support\Facades\Route;
+// wish:
+
+
+
+Route::get('/wish', [WishlistController::class, 'create'])->name('wish.create');
+Route::get('/wishlist', [WishlistController::class, 'index'])->name('wish.index');
+Route::post('/wish', [WishlistController::class, 'store'])->name('wish.store');
+// 
 Route::get('/categorie', [CategorieController::class, 'index'])->name('categorie');
 Route::post('/categorie', [CategorieController::class, 'store'])->name('store.categorie');
 Route::post('/ajouter', [DepenseController::class,'store'])->name('store.depense');
@@ -16,6 +25,7 @@ Route::delete('/categorie/{categorieid}', [CategorieController::class, 'destroy'
 Route::get('/update/{editid}', [CategorieController::class, 'edit'])->name('edit.categorie');
 Route::put('/update/{updateid}', [CategorieController::class, 'update'])->name('update.categorie');
 Route::get('/users', [AdminController::class, 'index'])->name('users.index');
+Route::get('/bord', [AdminController::class, 'static'])->name('static');
 Route::delete('/users/{userid}', [AdminController::class, 'destroy'])->name('users.destroy');
 // Route::get('/execute-ajoute-budget', [AdminController::class, 'ajouteBudget']);
 Route::get('/depenses', [DepenseController::class,'specifique'])->name('depenses');
@@ -39,6 +49,7 @@ Route::get('/update', function () {
 Route::get('/obje', function () {
     return view('goalsFormul');
 });
+
 Route::get('/bordUser', [UserController::class, 'static'])->name('bordUser');
 
 Route::get('/dashboard', function () {

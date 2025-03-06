@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MoneyMind - Tableau de Bord Utilisateur</title>
+    <title>MoneyMind - Gestion des Dépenses</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://ai-public.creatie.ai/gen_page/tailwind-custom.css" rel="stylesheet">
@@ -17,7 +17,6 @@
             <div class="flex items-center justify-center mb-6">
                 <img class="h-8 w-auto" src="https://ai-public.creatie.ai/gen_page/logo_placeholder.png" alt="MoneyMind">
             </div>
-            <ul>
             <ul>
             <li>
                     <a href="{{route('bordUser')}}" class="flex items-center space-x-3 py-2 px-3 rounded-md hover:bg-indigo-700">
@@ -71,70 +70,70 @@
             <main class="py-12">
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div class="lg:text-center">
-                        <h2 class="text-base text-custom font-semibold tracking-wide uppercase">Tableau de bord Utilisateur</h2>
+                      
                         <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
-                            Suivez votre budget, vos objectifs d’épargne et vos souhaits
+                         suivi votre souhaits 
                         </p>
                     </div>
+                   
 
-                    <div class="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        <!-- Revenu restant -->
-                        <div class="bg-white p-6 rounded-lg shadow-lg">
-                            <h3 class="text-xl font-medium text-gray-900">Revenu restant</h3>
-                            <p class="mt-4 text-2xl font-bold text-gray-700">{{$user->budget}} DH</p>
+                    <div class="mt-10">
+                        <!-- Ajouter une nouvelle dépense -->
+                        <div class="mb-6">
+                            
+                                <button type="submit" class="mt-4 inline-flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                    <a href="{{route('wish.create')}}">Ajouter  votre souhaits </a>
+                                </button>
+                           
                         </div>
 
-                        <!-- Dépenses totales -->
-                        <div class="bg-white p-6 rounded-lg shadow-lg">
-                            <h3 class="text-xl font-medium text-gray-900">Total Dépensé</h3>
-                            <p class="mt-4 text-2xl font-bold text-gray-700">{{$total}} DH</p>
-                        </div>
+                        <!-- Liste des dépenses -->
+                        <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 sm:rounded-lg">
+                     
+                            <table class="min-w-full divide-y divide-gray-200">
+                                <thead class="bg-gray-50">
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Nom</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Montant Nécessaire</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Montant Épargné</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Progression</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
+                                </thead>
+                                <tbody class="bg-white divide-y divide-gray-200">
+                               
+    @foreach($souhaits as $souhait)
+   =
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap"> {{$souhait->souhait}}</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">{{$souhait->prix_total}}</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">{{$souhait->montant_economise}}</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <div class="w-full bg-gray-200 rounded-full h-2.5">
+                                            <?php
+$progress = (50 / 400) * 100; // Calcul de la largeur en pourcentage
+?>
+<div class="bg-green-500 h-2.5 rounded-full" style="width: <?php echo $progress; ?>%"></div>
 
-                        <!-- Objectifs d'épargne -->
-                        <div class="bg-white p-6 rounded-lg shadow-lg">
-                            <h3 class="text-xl font-medium text-gray-900">Objectifs d'Épargne</h3>
-                            <p class="mt-4 text-2xl font-bold text-gray-700">60% atteint</p>
-                        </div>
-                    </div>
 
-                    <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <!-- Graphique des dépenses par catégorie -->
-                        <div class="bg-white p-6 rounded-lg shadow-lg">
-                            <h3 class="text-xl font-medium text-gray-900">Dépenses par catégorie</h3>
-                            <!-- Ajouter votre graphique ici -->
-                            <div class="mt-4 h-64 bg-gray-100 rounded-md">Graphique</div>
-                        </div>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                            <a href="" class="text-indigo-600 hover:text-indigo-900">Modifier</a>
+                                            <form action="" method="POST" class="inline-block">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button class="text-red-600 hover:text-red-900 ml-4">Supprimer</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                   
+                                 
+    @endforeach
 
-                        <!-- Dernière suggestion IA -->
-                        <div class="bg-white p-6 rounded-lg shadow-lg">
-                            <h3 class="text-xl font-medium text-gray-900">Dernière suggestion IA</h3>
-                            <p class="mt-4 text-gray-700">Optimisez vos dépenses en réduisant les achats non essentiels.</p>
+                                   
+                                
+                                </tbody>
+                            </table>
                         </div>
-                    </div>
-
-                    <div class="mt-8">
-                        <h3 class="text-xl font-medium text-gray-900">Vos Souhaits</h3>
-                        <div class="mt-4 bg-white p-6 rounded-lg shadow-lg">
-                            <ul>
-                                <li class="flex justify-between py-2">
-                                    <span>Voiture</span>
-                                    <span class="text-gray-700">50% atteint</span>
-                                </li>
-                                <li class="flex justify-between py-2">
-                                    <span>Vacances</span>
-                                    <span class="text-gray-700">30% atteint</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <!-- Notifications -->
-                    <div class="mt-8">
-                        <h3 class="text-xl font-medium text-gray-900">Notifications</h3>
-                        <ul class="mt-4 space-y-2">
-                            <li class="text-sm text-gray-600">Alerte : Dépassement de budget de 20 € pour les loisirs</li>
-                            <li class="text-sm text-gray-600">Notification : Salaire de 1 500,00 € crédité</li>
-                        </ul>
                     </div>
                 </div>
             </main>
@@ -142,7 +141,7 @@
     </div>
 
     <script>
-        // Vous pouvez intégrer ici des scripts pour charger des graphiques, des données dynamiques, etc.
+       
     </script>
 </body>
 </html>

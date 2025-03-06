@@ -71,7 +71,7 @@
                         <!-- Nombre d'utilisateurs -->
                         <div class="bg-white p-6 rounded-lg shadow-lg">
                             <h3 class="text-xl font-medium text-gray-900">Nombre d'utilisateurs</h3>
-                            <p class="mt-4 text-2xl font-bold text-gray-700">250 utilisateurs</p>
+                            <p class="mt-4 text-2xl font-bold text-gray-700">{{$users}} utilisateurs</p>
                         </div>
 
                         <!-- Revenu moyen des utilisateurs -->

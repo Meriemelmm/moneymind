@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Depense;
+use Illuminate\Support\Facades\DB;
 class AdminController extends Controller
 {
     /**
@@ -52,10 +53,13 @@ class AdminController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function static()
     {
-        //
+        // $users= User::count();
+        $users = DB::table('users')->count();
+        return view('bordAdmin',['users'=>$users]);
     }
+
 
     /**
      * Show the form for editing the specified resource.

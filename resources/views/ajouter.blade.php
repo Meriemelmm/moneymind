@@ -18,6 +18,7 @@
                 <img class="h-8 w-auto" src="https://ai-public.creatie.ai/gen_page/logo_placeholder.png" alt="MoneyMind">
             </div>
             <ul>
+            <ul>
             <li>
                     <a href="{{route('bordUser')}}" class="flex items-center space-x-3 py-2 px-3 rounded-md hover:bg-indigo-700">
                     <i class="fas fa-chart-line"></i>
@@ -37,13 +38,19 @@
                         <span>Gestion depenses </span>
                     </a>
                 </li>
-               
                 <li>
-                    <a href="#" class="flex items-center space-x-3 py-2 px-3 rounded-md hover:bg-indigo-700">
-                        <i class="fas fa-cogs"></i>
-                        <span>Paramètres</span>
+                    <a href="{{route('wish.create')}}" class="flex items-center space-x-3 py-2 px-3 rounded-md hover:bg-indigo-700">
+                    <i class="fas fa-plus"></i>
+                        <span>ajouter souhait </span>
                     </a>
                 </li>
+                <li>
+                    <a href="{{route('wish.index')}}" class="flex items-center space-x-3 py-2 px-3 rounded-md hover:bg-indigo-700">
+                    <i class="fas fa-sync-alt"></i> <!-- Icône de synchronisation, souvent utilisée pour le suivi -->
+
+                        <span>suivi  souhiats </span>
+                    </a>
+                </li>>
             </ul>
         </div>
 
