@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Schedule;
 use Illuminate\Support\Facades\Log;
 use Carbon\Carbon;
+use App\Http\Controllers\UserController;
 
 // Schedule::call(function () {
 //     // Récupérer toutes les dépenses récurrentes
@@ -154,7 +155,13 @@ Schedule::call(function () {
         }
     }
 })->dailyAt('16:00');
-//  task list :
+//  bord User  :
+Schedule::call(function(){
+    $user= new UserController();
+    $user->static();
+})->dailyAt('16:23');
+
+
 
 
 
