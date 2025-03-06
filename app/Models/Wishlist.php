@@ -8,6 +8,6 @@ class Wishlist extends Model
 {
     
    
-    protected $fillable = ['user_id', 'souhait', 'prix_total', 'montant_economise'];
+    protected $fillable = ['user_id', 'souhait', 'prix_total', 'montant_economise','priority'];
 
 }

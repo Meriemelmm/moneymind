@@ -18,6 +18,7 @@ return new class extends Migration
             $table->decimal('prix_total', 10, 2);
             $table->decimal('montant_economise', 10, 2)->default(0);
             $table->timestamps();
+            $table->enum('priority', ['Haute', 'Moyenne', 'Basse']);
         });}
 
     /**

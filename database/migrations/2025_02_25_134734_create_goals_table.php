@@ -15,10 +15,11 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->string('goal_name'); 
+            
             $table->integer('montant_objectif'); 
-            $table->integer('montant_epargne')->default(0); 
-            $table->enum('status', ['en cours', 'atteint', 'annulé'])->default('en cours'); 
+            $table->integer('montant_epargne')->default(0);
+            $table->string('month'); 
+            
             
         });
     }

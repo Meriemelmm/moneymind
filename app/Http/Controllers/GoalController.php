@@ -3,20 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Wishlist;
-use Illuminate\Console\View\Components\Warn;
 use Illuminate\Support\Facades\Auth;
-class WishlistController extends Controller
+use App\Models\Goal;
+
+class GoalController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    
     public function index()
-    { 
-  $souhaits= Wishlist::where('user_id',Auth::id())->get();
-       
+    {
         
-        return view('gestionWish',['souhaits'=> $souhaits]);
     }
 
     /**
@@ -24,42 +19,37 @@ class WishlistController extends Controller
      */
     public function create()
     {
-        return view('wishListAdd');
+        
+
     }
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
-       
-        $validated = $request->validate([
-
-            'souhait'=>['required','string','max:225'],
-            'prix_total'=>['required','numeric']
-        ]);
-        $wish=Wishlist::create([
-            'souhait'=>$validated['souhait'],
-            'prix_total'=>$validated['prix_total'],
+    { 
+        
+        $validated=$request->validate(['montant_objectif'=>['required','numeric']]);
+        $goal= Goal::create([
+            'montant_objectif'=>$validated['montant_objectif'],
             'user_id'=>Auth::id(),
-            'priority'=>$request->priority,
+            'month'=>$request->month
         ]);
-        if($wish){
-            return redirect()->route('wish.index');
+        if($goal){
+            return redirect()->route('depenses');
+
         }
         else{
-            return " non succes";
+            return "incorrect";
         }
-
-
     }
 
     /**
      * Display the specified resource.
      */
-    public function show( $id)
+    public function show(string $id)
     {
-        
+        //
     }
 
     /**

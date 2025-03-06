@@ -84,6 +84,22 @@
                                 <input name="prix_total" type="number" step="1" required class="appearance-none !rounded-button relative block w-full pl-10 pr-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-custom focus:border-custom" placeholder="0.00">
                             </div>
                         </div>
+                        <div class="mb-4">
+                            <label class="block text-sm font-medium text-gray-700">Catégorie</label>
+                            <div class="mt-1 relative">
+                                <select name="priority" class="appearance-none !rounded-button relative block w-full pl-3 pr-10 py-2 border border-gray-300 text-gray-900 focus:outline-none focus:ring-custom focus:border-custom">
+                                    <option value=""></option>
+                                    
+                                       
+                                            <option value="Haute" name="priority">Haute</option>
+                                            <option value="Basse" name="priority">Basse</option>
+                                            <option value="Moyenne" name="priority">Moyenne</option>
+                                         
+                                    
+                                  
+                                </select>
+                            </div>
+                        </div>
 
                       
 

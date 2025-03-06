@@ -6,6 +6,7 @@ use App\Http\Controllers\DepenseController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WishlistController;
+use App\Http\Controllers\GoalController;
 
 
 use Illuminate\Support\Facades\Route;
@@ -16,6 +17,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/wish', [WishlistController::class, 'create'])->name('wish.create');
 Route::get('/wishlist', [WishlistController::class, 'index'])->name('wish.index');
 Route::post('/wish', [WishlistController::class, 'store'])->name('wish.store');
+// 
+// goals:
+
+Route::post('/depenses', [GoalController::class,'store'])->name('goal.store');
+
 // 
 Route::get('/categorie', [CategorieController::class, 'index'])->name('categorie');
 Route::post('/categorie', [CategorieController::class, 'store'])->name('store.categorie');

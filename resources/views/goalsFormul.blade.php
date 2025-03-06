@@ -60,50 +60,16 @@
                 <form id="expenseForm" class="mt-8 space-y-6" method="POST" action="{{ route('store.depense') }}">
                     @csrf
                     <div class="space-y-4">
-                        <div class="mb-4">
-                            <p class="text-sm font-medium text-gray-700 mb-2">Type de dépense</p>
-                            <div class="flex items-center space-x-4">
-                                <label class="flex items-center space-x-2">
-                                    <input type="radio" id="uniqueExpense" name="type" class="h-4 w-4 text-custom border-gray-300 rounded focus:ring-custom" value="non recurrent">
-                                    <span class="text-sm text-gray-700">Dépense unique</span>
-                                </label>
-                                <label class="flex items-center space-x-2">
-                                    <input type="radio" value="recurrent" id="recurringExpense" name="type" class="h-4 w-4 text-custom border-gray-300 rounded focus:ring-custom">
-                                    <span class="text-sm text-gray-700">Dépense récurrente</span>
-                                </label>
-                            </div>
-                        </div>
+                       
 
-                        <div class="mb-4">
-                            <label class="block text-sm font-medium text-gray-700">Titre (obligatoire)</label>
-                            <div class="mt-1">
-                                <input name="name_depense" class="appearance-none !rounded-button block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-custom focus:border-custom" rows="3" placeholder="Ajoutez une depense...">
-                            </div>
-                        </div>
+                    <div class="mb-4">
+        <label for="target_amount" class="block text-sm font-medium text-gray-700">Montant Cible d'Épargne</label>
+        <input type="number" id="target_amount" name="target_amount" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="Ex : 2000 DH" required>
+    </div>
 
-                        <div class="mb-4">
-                            <label class="block text-sm font-medium text-gray-700">Montant</label>
-                            <div class="mt-1 relative">
-                                <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-400">
-                                    <i class="fas fa-euro-sign"></i>
-                                </span>
-                                <input name="montant" type="number" step="1" required class="appearance-none !rounded-button relative block w-full pl-10 pr-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-custom focus:border-custom" placeholder="0.00">
-                            </div>
-                        </div>
+                        
 
-                        <div class="mb-4">
-                            <label class="block text-sm font-medium text-gray-700">Catégorie</label>
-                            <div class="mt-1 relative">
-                                <select name="categorie_id" class="appearance-none !rounded-button relative block w-full pl-3 pr-10 py-2 border border-gray-300 text-gray-900 focus:outline-none focus:ring-custom focus:border-custom">
-                                    <option value="">Sélectionnez une catégorie</option>
-                                    @if(isset($categories) && $categories->count() > 0)
-                                        @foreach($categories as $categorie)
-                                            <option value="{{ $categorie->id }}" name="categorie_id">{{ $categorie->name_categorie }}</option>
-                                        @endforeach
-                                    @endif
-                                </select>
-                            </div>
-                        </div>
+                        
 
                         <div class="mb-4" id="extraInputContainer"></div>
                     </div>
@@ -116,7 +82,7 @@
 
         </div>
     </div>
-
+    
 
    
 </body>

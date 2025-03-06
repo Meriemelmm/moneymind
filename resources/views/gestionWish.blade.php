@@ -95,17 +95,19 @@
                                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Nom</th>
                                         <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Montant Nécessaire</th>
                                         <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Montant Épargné</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase"> priority</th>
                                         <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Progression</th>
                                         <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
                                 </thead>
                                 <tbody class="bg-white divide-y divide-gray-200">
                                
     @foreach($souhaits as $souhait)
-   =
+   
                                     <tr>
                                         <td class="px-6 py-4 whitespace-nowrap"> {{$souhait->souhait}}</td>
                                         <td class="px-6 py-4 whitespace-nowrap">{{$souhait->prix_total}}</td>
                                         <td class="px-6 py-4 whitespace-nowrap">{{$souhait->montant_economise}}</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">{{$souhait->priority}}</td>
                                         <td class="px-6 py-4 whitespace-nowrap">
                                             <div class="w-full bg-gray-200 rounded-full h-2.5">
                                             <?php

@@ -70,6 +70,21 @@
 
             <main class="py-12">
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <form action="{{route('goal.store')}}" method="POST">
+    @csrf
+    <div class="mb-4">
+        <label for="montant_objectif" class="block text-sm font-medium text-gray-700">Montant Cible d'Épargne</label>
+        <input type="number" id="target_amount" name="montant_objectif" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="Ex : 2000 DH" required>
+    </div>
+    
+
+    <!-- Champ caché pour envoyer le mois courant -->
+    <input type="hidden" name="month" value="{{ now()->format('Y-m') }}">
+
+    <button type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+        Enregistrer l'Objectif
+    </button>
+</form>
                     <div class="lg:text-center">
                         <h2 class="text-base text-custom font-semibold tracking-wide uppercase">Gestion des Dépenses</h2>
                         <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">

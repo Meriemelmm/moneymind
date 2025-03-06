@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use App\Models\Depense;
+use App\Models\Goal;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Schedule;
 use Illuminate\Support\Facades\Log;
@@ -75,7 +76,7 @@ Schedule::call(function () {
             $user->save();
         }
     }
-})->cron('48 11 * * *');
+})->cron('50 14 * * *');
 /*
 selecter tout les users
 parcourir les users b foreach
@@ -93,30 +94,74 @@ Schedule::call(function () {
     $depenses = Depense::all();
     foreach($depenses as $depense){
 
-        if ($depense->type === "recurrent") {
-            if($depense->date_recurrence=== Carbon::now()->day){
+        // if ($depense->type === "recurrent") {
+        //     if($depense->date_recurrence=== Carbon::now()->day){
 
 
-                $depense->user->budget-=$depense->montant;
-                $depense->user->save();
-            }
+        //         $depense->user->budget-=$depense->montant;
+        //         $depense->user->save();
+        //     }
 
             
-        } else {
-            // $this->info("La dépense {$depense->name_depense} n'est pas récurrente .");
-            if($depense->date_depense ===Carbon::now()->toDateString() ){
+        // } else {
+        //     // $this->info("La dépense {$depense->name_depense} n'est pas récurrente .");
+        //     if($depense->date_depense ===Carbon::now()->toDateString() ){
 
 
-                $depense->user->budget=$depense->user->budget-$depense->montant;
-                $depense->user->save();
-            }
-        } 
+        //         $depense->user->budget=$depense->user->budget-$depense->montant;
+        //         $depense->user->save();
+        //     }
+        // } 
+        $depense->user->budget-=$depense->montant;
+        $depense->user->save();
 
      
 }
 
     }
-)->cron('30 12 * * *');
+)->dailyAt('14:50');
+
+//  goalq 
+Schedule::call(function () {
+    $users = User::all();
+
+    foreach ($users as $user) {
+        $currentMonth = Carbon::now()->format('Y-m');
+
+        foreach ($user->goals as $goal) {
+            if ($goal->month == $currentMonth) {
+                
+                $montant_objectif = $goal->montant_objectif;
+
+               
+                if ($user->budget >= $montant_objectif) {
+                    $user->budget -= $montant_objectif;
+                    $goal->montant_epargne += $montant_objectif;
+
+                   
+                    $user->save();
+                    $goal->save();
+                }
+                else{   $goal->montant_epargne += $user->budget;
+                    $user->budget -= $user->budget;
+                 
+
+                   
+                    $user->save();
+                    $goal->save();
+                }
+            }
+        }
+    }
+})->dailyAt('16:00');
+//  task list :
+
+
+
+
+
+
+
 
 
 
