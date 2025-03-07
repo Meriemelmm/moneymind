@@ -57,4 +57,8 @@ public function goals()
 {
     return $this->hasMany(Goal::class);
 }
+public function wishlists()
+{
+    return $this->hasMany(Wishlist::class);
+}
 }

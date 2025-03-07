@@ -17,6 +17,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/wish', [WishlistController::class, 'create'])->name('wish.create');
 Route::get('/wishlist', [WishlistController::class, 'index'])->name('wish.index');
 Route::post('/wish', [WishlistController::class, 'store'])->name('wish.store');
+Route::delete('/wishlist{id}', [WishlistController::class, 'destroy'])->name('wish.destroy');
+Route::get('/wishlist/{updateid}', [WishlistController::class, 'edit'])->name('wish.edit');
+Route::post('/wishlist/{updateid}', [WishlistController::class, 'update'])->name('wish.update');
 // 
 // goals:
 
@@ -42,6 +45,8 @@ Route::get('/edit/{depenseid}', [DepenseController::class,'edit'])->name('edit.d
 Route::put('/edit/{depenseid}', [DepenseController::class,'update'])->name('update.depense');
 
 Route::get('/ajouter', [DepenseController::class, 'index'])->name('ajouter.index');
+// Route::resource('Wishlist', WishlistController::class);
+
 
 Route::get('/', function () {
     return view('welcome');

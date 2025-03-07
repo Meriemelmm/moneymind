@@ -119,16 +119,67 @@ $progress = (50 / 400) * 100; // Calcul de la largeur en pourcentage
                                             </div>
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                            <a href="" class="text-indigo-600 hover:text-indigo-900">Modifier</a>
-                                            <form action="" method="POST" class="inline-block">
-                                                @csrf
+                                        <a href="{{route('wish.edit',['updateid'=>$souhait->id])}}" class="text-indigo-600 hover:text-indigo-900">Modifier</a>                                        <form action="{{route('wish.destroy',['id'=>$souhait->id])}}" method="POST" class="inline-block">
+                                            @csrf                   
+                                            <button class="text-red-600 hover:text-red-900 ml-4" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet élément ?')">Supprimer</button>
                                                 @method('DELETE')
-                                                <button class="text-red-600 hover:text-red-900 ml-4">Supprimer</button>
-                                            </form>
+                                                </form>
                                         </td>
                                     </tr>
                                    
                                  
+                                    <!-- <div id="modalModifier" class="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50 hidden">
+                                       <div class="bg-white p-6 rounded-lg shadow-lg w-1/3">
+                                           <h2 class="text-xl font-semibold mb-4">Modifier l'élément</h2>
+                                    <form id="expenseForm" class="mt-8 space-y-6" method="POST" action="{{route('wish.store',$souhait->id)}}">
+                                                       @csrf
+                                                       <div class="space-y-4">
+                                                        
+                               
+                                                           <div class="mb-4">
+                                                               <label class="block text-sm font-medium text-gray-700">{{$souhait->id}}</label>
+                                                               <div class="mt-1">
+                                                                   <input name="souhait" value="{{ old('name', $souhait->name) }}" class="appearance-none !rounded-button block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-custom focus:border-custom" rows="3" placeholder="Ajoutez une souhait...">
+                                                               </div>
+                                                           </div>
+                                    
+                                                           <div class="mb-4">
+                                                               <label class="block text-sm font-medium text-gray-700">prix total</label>
+                                                               <div class="mt-1 relative">
+                                                                   <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-400">
+                                                                       <i class="fas fa-euro-sign"></i>
+                                                                   </span>
+                                                                   <input name="prix_total" type="number" step="1" required class="appearance-none !rounded-button relative block w-full pl-10 pr-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-custom focus:border-custom" placeholder="0.00">
+                                                               </div>
+                                                           </div>
+                                                           <div class="mb-4">
+                                                               <label class="block text-sm font-medium text-gray-700">Priority</label>
+                                                               <div class="mt-1 relative">
+                                                                   <select name="priority" class="appearance-none !rounded-button relative block w-full pl-3 pr-10 py-2 border border-gray-300 text-gray-900 focus:outline-none focus:ring-custom focus:border-custom">
+                                                                       <option value=""></option>
+                                                                       
+                                                                          
+                                                                               <option value="Haute" name="priority">Haute</option>
+                                                                               <option value="Basse" name="priority">Basse</option>
+                                                                               <option value="Moyenne" name="priority">Moyenne</option>
+                                                                            
+                                                                       
+                                                                     
+                                                                   </select>
+                                                               </div>
+                                                           </div>
+                                    
+                                                         
+                                    
+                                                           <div class="mb-4" id="extraInputContainer"></div>
+                                                       </div>
+                                    
+                                                       <button type="submit" class="!rounded-button group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium text-white bg-custom hover:bg-custom/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-custom">
+                                                           Enregistrer votre souhait
+                                                       </button>
+                                    </form>
+                                       </div>
+                                    </div>  -->
     @endforeach
 
                                    
@@ -141,9 +192,19 @@ $progress = (50 / 400) * 100; // Calcul de la largeur en pourcentage
             </main>
         </div>
     </div>
+<!-- modeeeeeeeeeeeeeeeel -->
+
+
+
+
+
 
     <script>
-       
+    //       function openModal(id) {
+    //     document.getElementById('modalModifier').classList.remove('hidden');
+    //     document.getElementById('modalItemId').innerText = id; // Display ID in modal
+    //     document.getElementById('editItemId').value = id; // Store ID in hidden input
+    // }
     </script>
 </body>
 </html>

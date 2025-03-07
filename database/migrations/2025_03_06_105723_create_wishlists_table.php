@@ -19,6 +19,7 @@ return new class extends Migration
             $table->decimal('montant_economise', 10, 2)->default(0);
             $table->timestamps();
             $table->enum('priority', ['Haute', 'Moyenne', 'Basse']);
+            $table->enum('status', ['pending', 'completed'])->default('pending');
         });}
 
     /**

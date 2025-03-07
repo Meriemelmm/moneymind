@@ -60,10 +60,10 @@
                 <div class="text-center">
                     <img class="mx-auto h-16 w-auto" src="https://ai-public.creatie.ai/gen_page/logo_placeholder.png" alt="Logo"/>
                     <h2 class="mt-6 text-3xl font-[&#39;Playfair_Display&#39;] font-bold text-gray-900">Ajouter une souhait</h2>
-                    <p class="mt-2 text-sm text-gray-600">Enregistrez vos souhaits s d'un façon simple</p>
+                    <p class="mt-2 text-sm text-gray-600">updated vos souhaits s d'un façon simple</p>
                 </div>
 
-                <form id="expenseForm" class="mt-8 space-y-6" method="POST" action="{{route('wish.store')}}">
+                <form id="expenseForm" class="mt-8 space-y-6" method="POST" action="{{route('wish.update',['updateid'=>$souhait->id])}}">
                     @csrf
                     <div class="space-y-4">
                      
@@ -71,7 +71,7 @@
                         <div class="mb-4">
                             <label class="block text-sm font-medium text-gray-700">souhait (obligatoire)</label>
                             <div class="mt-1">
-                                <input name="souhait" class="appearance-none !rounded-button block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-custom focus:border-custom" rows="3" placeholder="Ajoutez une souhait...">
+                                <input name="souhait"  value="{{$souhait->souhait}}"class="appearance-none !rounded-button block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-custom focus:border-custom" rows="3" placeholder="Ajoutez une souhait...">
                             </div>
                         </div>
 
@@ -81,7 +81,7 @@
                                 <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-400">
                                     <i class="fas fa-euro-sign"></i>
                                 </span>
-                                <input name="prix_total" type="number" step="1" required class="appearance-none !rounded-button relative block w-full pl-10 pr-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-custom focus:border-custom" placeholder="0.00">
+                                <input name="prix_total"value="{{$souhait->prix_total}}" type="number" step="1" required class="appearance-none !rounded-button relative block w-full pl-10 pr-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-custom focus:border-custom" placeholder="0.00">
                             </div>
                         </div>
                         <div class="mb-4">
@@ -107,7 +107,7 @@
                     </div>
 
                     <button type="submit" class="!rounded-button group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium text-white bg-custom hover:bg-custom/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-custom">
-                        Enregistrer votre souhait
+                        modifier votre souhait
                     </button>
                 </form>
             </div>
