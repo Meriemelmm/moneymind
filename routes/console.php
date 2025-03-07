@@ -156,10 +156,11 @@ Schedule::call(function () {
     }
 })->dailyAt('16:00');
 //  bord User  :
-Schedule::call(function(){
-    $user= new UserController();
-    $user->static();
-})->dailyAt('16:23');
+// Schedule::call(function(){
+//     $user= new UserController();
+//     $user->static();
+// })->dailyAt('16:23');
+
 
 
 
