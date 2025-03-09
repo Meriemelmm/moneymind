@@ -54,10 +54,18 @@
                                 <img class="h-8 w-auto" src="https://ai-public.creatie.ai/gen_page/logo_placeholder.png" alt="MoneyMind">
                             </div>
                         </div>
+                        <!-- Bouton Déconnexion dans la Navbar -->
+                        <div class="flex items-center">
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+                                <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600">
+                                    Déconnexion
+                                </button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </nav>
-
             <main class="py-12">
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div class="lg:text-center">
@@ -71,7 +79,7 @@
                         <!-- Nombre d'utilisateurs -->
                         <div class="bg-white p-6 rounded-lg shadow-lg">
                             <h3 class="text-xl font-medium text-gray-900">Nombre d'utilisateurs</h3>
-                            <p class="mt-4 text-2xl font-bold text-gray-700">{{$users}} utilisateurs</p>
+                            <p class="mt-4 text-2xl font-bold text-gray-700">utilisateurs</p>
                         </div>
 
                         <!-- Revenu moyen des utilisateurs -->

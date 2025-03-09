@@ -18,38 +18,45 @@
                 <img class="h-8 w-auto" src="https://ai-public.creatie.ai/gen_page/logo_placeholder.png" alt="MoneyMind">
             </div>
             <ul>
-            <ul>
-            <li>
+                <li>
                     <a href="{{route('bordUser')}}" class="flex items-center space-x-3 py-2 px-3 rounded-md hover:bg-indigo-700">
-                    <i class="fas fa-chart-line"></i>
-
-                        <span> tableau du bord </span>
+                        <i class="fas fa-chart-line"></i>
+                        <span>Tableau de bord</span>
                     </a>
                 </li>
                 <li>
                     <a href="{{route('ajouter.index')}}" class="flex items-center space-x-3 py-2 px-3 rounded-md hover:bg-indigo-700">
-                    <i class="fas fa-plus"></i>
-                        <span>ajouter depense</span>
+                        <i class="fas fa-plus"></i>
+                        <span>Ajouter dépense</span>
                     </a>
                 </li>
                 <li>
                     <a href="{{route('depenses')}}" class="flex items-center space-x-3 py-2 px-3 rounded-md hover:bg-indigo-700">
-                    <i class="fas fa-wallet"></i>
-                        <span>Gestion depenses </span>
+                        <i class="fas fa-wallet"></i>
+                        <span>Gestion dépenses</span>
                     </a>
                 </li>
                 <li>
                     <a href="{{route('wish.create')}}" class="flex items-center space-x-3 py-2 px-3 rounded-md hover:bg-indigo-700">
-                    <i class="fas fa-plus"></i>
-                        <span>ajouter souhait </span>
+                        <i class="fas fa-plus"></i>
+                        <span>Ajouter souhait</span>
                     </a>
                 </li>
                 <li>
                     <a href="{{route('wish.index')}}" class="flex items-center space-x-3 py-2 px-3 rounded-md hover:bg-indigo-700">
-                    <i class="fas fa-sync-alt"></i> <!-- Icône de synchronisation, souvent utilisée pour le suivi -->
-
-                        <span>suivi  souhiats </span>
+                        <i class="fas fa-sync-alt"></i>
+                        <span>Suivi souhaits</span>
                     </a>
+                </li>
+                <!-- Bouton Déconnexion -->
+                <li>
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <button type="submit" class="w-full flex items-center space-x-3 py-2 px-3 rounded-md text-left hover:bg-red-600">
+                            <i class="fas fa-sign-out-alt"></i>
+                            <span>Déconnexion</span>
+                        </button>
+                    </form>
                 </li>
             </ul>
         </div>
@@ -63,6 +70,15 @@
                             <div class="flex-shrink-0 flex items-center">
                                 <img class="h-8 w-auto" src="https://ai-public.creatie.ai/gen_page/logo_placeholder.png" alt="MoneyMind">
                             </div>
+                        </div>
+                        <!-- Bouton Déconnexion dans la Navbar -->
+                        <div class="flex items-center">
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+                                <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600">
+                                    Déconnexion
+                                </button>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -78,19 +94,14 @@
                     </div>
 
                     <div class="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        <!-- Revenu restant -->
                         <div class="bg-white p-6 rounded-lg shadow-lg">
                             <h3 class="text-xl font-medium text-gray-900">Revenu restant</h3>
                             <p class="mt-4 text-2xl font-bold text-gray-700">{{$user->budget}} DH</p>
                         </div>
-
-                        <!-- Dépenses totales -->
                         <div class="bg-white p-6 rounded-lg shadow-lg">
                             <h3 class="text-xl font-medium text-gray-900">Total Dépensé</h3>
                             <p class="mt-4 text-2xl font-bold text-gray-700">{{$total}} DH</p>
                         </div>
-
-                        <!-- Objectifs d'épargne -->
                         <div class="bg-white p-6 rounded-lg shadow-lg">
                             <h3 class="text-xl font-medium text-gray-900">Objectifs d'Épargne</h3>
                             <p class="mt-4 text-2xl font-bold text-gray-700">60% atteint</p>
@@ -98,17 +109,13 @@
                     </div>
 
                     <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <!-- Graphique des dépenses par catégorie -->
                         <div class="bg-white p-6 rounded-lg shadow-lg">
                             <h3 class="text-xl font-medium text-gray-900">Dépenses par catégorie</h3>
-                            <!-- Ajouter votre graphique ici -->
                             <div class="mt-4 h-64 bg-gray-100 rounded-md">Graphique</div>
                         </div>
-
-                        <!-- Dernière suggestion IA -->
                         <div class="bg-white p-6 rounded-lg shadow-lg">
                             <h3 class="text-xl font-medium text-gray-900">Dernière suggestion IA</h3>
-                            <p class="mt-4 text-gray-700">Optimisez vos dépenses en réduisant les achats non essentiels.</p>
+                            <p class="mt-4 text-gray-700">sdsd</p>
                         </div>
                     </div>
 
@@ -128,7 +135,6 @@
                         </div>
                     </div>
 
-                    <!-- Notifications -->
                     <div class="mt-8">
                         <h3 class="text-xl font-medium text-gray-900">Notifications</h3>
                         <ul class="mt-4 space-y-2">
@@ -140,9 +146,5 @@
             </main>
         </div>
     </div>
-
-    <script>
-        // Vous pouvez intégrer ici des scripts pour charger des graphiques, des données dynamiques, etc.
-    </script>
 </body>
 </html>

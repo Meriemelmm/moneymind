@@ -186,7 +186,7 @@ Schedule::call(function() {
             }
         }
     }
-})->dailyAt('15:43');
+})->dailyAt('15:55');
 
 
 

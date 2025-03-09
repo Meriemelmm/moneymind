@@ -63,6 +63,15 @@
                                 <img class="h-8 w-auto" src="https://ai-public.creatie.ai/gen_page/logo_placeholder.png" alt="MoneyMind">
                             </div>
                         </div>
+                        <!-- Bouton Déconnexion dans la Navbar -->
+                        <div class="flex items-center">
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+                                <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600">
+                                    Déconnexion
+                                </button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </nav>
@@ -111,7 +120,7 @@
                                         <td class="px-6 py-4 whitespace-nowrap">
                                             <div class="w-full bg-gray-200 rounded-full h-2.5">
                                             <?php
-$progress = (50 / 400) * 100; // Calcul de la largeur en pourcentage
+$progress = ($souhait->montant_economise / $souhait->prix_total) * 100; // Calcul de la largeur en pourcentage
 ?>
 <div class="bg-green-500 h-2.5 rounded-full" style="width: <?php echo $progress; ?>%"></div>
 

@@ -11,11 +11,18 @@ use Illuminate\Auth\Events\Validated;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Schedule;
 use Illuminate\Support\Facades\Log;
+use App\Services\GeminiAIService;
 
 
 
 class DepenseController extends Controller
 {
+    protected $geminiAIService;
+
+    public function __construct(GeminiAIService $geminiAIService)
+    {
+        $this->geminiAIService = $geminiAIService;
+    }
     public function index()
     {
         $categories = Categorie::all();
@@ -173,6 +180,24 @@ public function specifique()
         }
       
         
+    }
+    public function analyseDepenses()
+    {
+        $userId = Auth::id();
+        $depenses = Depense::where('depenses.user_id', $userId)
+        ->join('categories', 'depenses.categorie_id', '=', 'categories.id')
+        ->select('depenses.name_depense', 'depenses.montant', 'categories.name_categorie', 'depenses.type')
+        ->get()
+        ->toArray();
+
+        if (empty($depenses)) {
+            return response()->json(['message' => 'Aucune dépense trouvée.'], 404);
+        }
+
+        $suggestion = $this->geminiAIService->analyseDepenses($depenses);
+       
+
+        return view('bordUser',['suggestion'=> $suggestion]);
     }
    
 }

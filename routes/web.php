@@ -12,6 +12,9 @@ use App\Http\Controllers\GoalController;
 use Illuminate\Support\Facades\Route;
 // wish:
 
+use App\Http\Controllers\EmailController;
+
+Route::get('/send-email', [EmailController::class, 'sendEmail']);
 
 
 Route::get('/wish', [WishlistController::class, 'create'])->name('wish.create');
@@ -62,6 +65,7 @@ Route::get('/obje', function () {
 });
 
 Route::get('/bordUser', [UserController::class, 'static'])->name('bordUser');
+// Route::get('/bordUser', [DepenseController::class, 'analyseDepenses']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');

@@ -53,7 +53,27 @@
                 </li>
             </ul>
         </div>
-
+        <div class="flex-1 bg-gray-50">
+            <nav class="bg-white shadow-sm">
+                <div class="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="flex justify-between h-16">
+                        <div class="flex">
+                            <div class="flex-shrink-0 flex items-center">
+                                <img class="h-8 w-auto" src="https://ai-public.creatie.ai/gen_page/logo_placeholder.png" alt="MoneyMind">
+                            </div>
+                        </div>
+                        <!-- Bouton Déconnexion dans la Navbar -->
+                        <div class="flex items-center">
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+                                <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600">
+                                    Déconnexion
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </nav>
         <!-- Main content -->
         <div class="flex-1 bg-gray-50">
             <nav class="bg-white shadow-sm">

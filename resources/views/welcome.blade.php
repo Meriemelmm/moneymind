@@ -24,7 +24,10 @@
                         <i class="fas fa-bell"></i>
                     </button>
                     <div class="ml-3 relative">
-                         <button class="bg-custom text-white !rounded-button px-4 py-2 text-sm font-medium">Se connecter</button>
+                         <button class="bg-custom text-white !rounded-button px-4 py-2 text-sm font-medium"><a href="{{route('register')}}">S'inscrit</a></button>
+                    </div>
+                    <div class="ml-3 relative">
+                         <button class="bg-custom text-white !rounded-button px-4 py-2 text-sm font-medium"> <a href="{{route('login')}}">Se connecter</a></button>
                     </div>
                 </div>
             </div>
