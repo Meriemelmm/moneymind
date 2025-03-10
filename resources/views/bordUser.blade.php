@@ -115,7 +115,7 @@
                         </div>
                         <div class="bg-white p-6 rounded-lg shadow-lg">
                             <h3 class="text-xl font-medium text-gray-900">Dernière suggestion IA</h3>
-                            <p class="mt-4 text-gray-700">sdsd</p>
+                            <p class="mt-4 text-gray-700">{{$suggestion}}</p>
                         </div>
                     </div>
 

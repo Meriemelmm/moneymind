@@ -4,22 +4,52 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Depense;
 use Illuminate\Support\Facades\Auth;
+use App\Services\GeminiAIService;
 
 
 class UserController extends Controller
-{
-    
-    public function static()
+{ protected $geminiAIService;
+
+    public function __construct(GeminiAIService $geminiAIService)
     {
-      $user= User::find(Auth::id());
- $totalDepense=$user->depenses->sum('montant');
-
-
-
-     return view('bordUser',['user'=>$user,'total'=>$totalDepense]);
-
+        $this->geminiAIService = $geminiAIService;
     }
+    public function static()
+{
+    $user = User::with('depenses')->find(Auth::id());
+
+    
+    $userId = Auth::id();
+
+    $depenses = Depense::where('user_id', $userId)
+        ->join('categories', 'depenses.categorie_id', '=', 'categories.id')
+        ->select('depenses.name_depense', 'depenses.montant', 'categories.name_categorie', 'depenses.type')
+        ->get()
+        ->toArray();
+
+    if (empty($depenses)) {
+        return response()->json(['message' => 'Aucune dépense trouvée.'], 404);
+    }
+
+    
+    if (!isset($this->geminiAIService)) {
+        return response()->json(['message' => 'Service AI non disponible.'], 500);
+    }
+
+    $suggestion = $this->geminiAIService->analyseDepenses($depenses);
+
+    $totalDepense = $user->depenses->sum('montant');
+
+    return view('bordUser', [
+        'user' => $user,
+        'total' => $totalDepense,
+        'suggestion' => $suggestion
+    ]);
+}
+
+
 
 
     public function create()

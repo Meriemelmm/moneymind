@@ -65,14 +65,13 @@ class RegisteredUserController extends Controller
         Auth::login($user);
 
    
-       $user = User::find(Auth::id());
-       if($user->role){
-        return  view('ajouter');
-
-       }
-       else{
-        return view('bordAdmin');
-       }
+        $user = User::find(Auth::id());
+        if (!empty($user->role) && $user->role === "admin") {
+            return redirect()->route('static');
+           
+        }else{
+            return redirect()->route('bordUser');
+        }
 
     }
 }

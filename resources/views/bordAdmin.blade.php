@@ -19,7 +19,7 @@
             </div>
             <ul>
             <li>
-                    <a href="{{route('bordAdmin')}}" class="flex items-center space-x-3 py-2 px-3 rounded-md hover:bg-indigo-700">
+                    <a href="{{route('static')}}" class="flex items-center space-x-3 py-2 px-3 rounded-md hover:bg-indigo-700">
                         <i class="fas fa-users"></i>
                         <span>tableau du bord </span>
                     </a>
@@ -79,7 +79,7 @@
                         <!-- Nombre d'utilisateurs -->
                         <div class="bg-white p-6 rounded-lg shadow-lg">
                             <h3 class="text-xl font-medium text-gray-900">Nombre d'utilisateurs</h3>
-                            <p class="mt-4 text-2xl font-bold text-gray-700">utilisateurs</p>
+                            <p class="mt-4 text-2xl font-bold text-gray-700">{{$users}}utilisateurs</p>
                         </div>
 
                         <!-- Revenu moyen des utilisateurs -->

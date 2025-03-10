@@ -33,14 +33,17 @@ class AuthenticatedSessionController extends Controller
         // return redirect()->intended(route('gestion_user', absolute: false));
         
         $user = User::find(Auth::id());
-        if($user->role){
-         return  view('ajouter');
- 
+        if (!empty($user->role) && $user->role === "admin") {
+            return redirect()->route('static');
+           
+        }else{
+            return redirect()->route('bordUser');
         }
-        else{
-         return view('categorie');
-        }
+        
+       
+  
  
+       
     }
 
     /**

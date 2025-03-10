@@ -56,8 +56,9 @@ class AdminController extends Controller
     public function static()
     {
         // $users= User::count();
-        $users = DB::table('users')->count();
-        return view('bordAdmin',['users'=>$users]);
+        $users = User::where('role', 'user')->count();
+        return view('bordAdmin', ['users' => $users]);
+        
     }
 
 

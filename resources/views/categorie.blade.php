@@ -18,7 +18,7 @@
             </div>
             <ul>
             <li>
-                    <a href="{{route('bordAdmin')}}" class="flex items-center space-x-3 py-2 px-3 rounded-md hover:bg-indigo-700">
+                    <a href="{{route('static')}}" class="flex items-center space-x-3 py-2 px-3 rounded-md hover:bg-indigo-700">
                         <i class="fas fa-users"></i>
                         <span>tableau du bord </span>
                     </a>
